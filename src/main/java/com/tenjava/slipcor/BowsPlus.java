@@ -1,15 +1,8 @@
 package com.tenjava.slipcor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Creeper;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
@@ -17,8 +10,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
@@ -28,7 +19,9 @@ public class BowsPlus extends JavaPlugin implements Listener {
 	@Override
 	public void onEnable() {
 		Bukkit.getPluginManager().registerEvents(this, this);
-		
+
+		Bukkit.getPluginCommand("bowsplusreload").setExecutor(new CmdReload(this));
+		Bukkit.getPluginCommand("bowsplus").setExecutor(new CmdSet(this));
 		
 	}
 	
@@ -106,14 +99,5 @@ public class BowsPlus extends JavaPlugin implements Listener {
 			
 			
 		}
-	}
-	
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String cmdLabel, String[] args) {
-		Bukkit.getPluginCommand("bowsplusreload").setExecutor(new CmdReload(this));
-		Bukkit.getPluginCommand("bowsplus").setExecutor(new CmdSet(this));
-		
-		
-		return true;
 	}
 }

@@ -4,11 +4,11 @@ description: BowsPlus
 author: slipcor
 version: 0.0.2
 commands:
-  bowplus:
+  bowsplus:
     aliases: ['bp']
     description: add stuff to your bow
     usage: /<command> [TYPE] {subvalue1} {subvalue2}
-  bowplusreload:
+  bowsplusreload:
     aliases: ['bpr']
     description: reload the command
     usage: /<command>
