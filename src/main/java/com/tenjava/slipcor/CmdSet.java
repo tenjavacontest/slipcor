@@ -34,12 +34,6 @@ public class CmdSet implements CommandExecutor {
 			
 			Player player = (Player) sender;
 			
-			if (player.getItemInHand() == null || player.getItemInHand().getType() != Material.BOW) {
-				sender.sendMessage("You don't hold a bow in your hand. Fix this!");
-				
-				return true;
-			}
-			
 			String type = args[0];
 			
 			/*
@@ -60,17 +54,18 @@ public class CmdSet implements CommandExecutor {
 			} 
 			
 			if (player.isOp() || Utils.hasPerms(player, e, m)) {
+
 				if (e == null && m == null) {
 					sender.sendMessage("Unknown item or entity: "+type+"!");
+					return true;
 				} else if (e == null) {
-					player.setMetadata("bowplustype", new FixedMetadataValue(plugin, m.name()));
-					System.out.print("saving " + m.name() + " to " +player.getName());
-					player.sendMessage("Your bows now fire: " + m.name());
+					args[0] = m.name();
 				} else {
-					player.setMetadata("bowplustype", new FixedMetadataValue(plugin, e.name()));
-					System.out.print("saving " +  e.name() + " to " +player.getName());
-					player.sendMessage("Your bows now fire: " + e.name());
+					args[0] = e.name();
 				}
+				player.setMetadata("bowplustype", new FixedMetadataValue(plugin, args));
+				System.out.print("saving " + args[0] + " to " +player.getName());
+				player.sendMessage("Your bows now fire: " + args[0]);
 			} else {
 				sender.sendMessage("You don't have the permission to spawn this!");
 			}

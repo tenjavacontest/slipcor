@@ -44,11 +44,11 @@ public class BowsPlus extends JavaPlugin implements Listener {
 			EntityType e = null;
 			Material m = null;
 			
-			String type = null;
+			String[] type = null;
 			
 			for (MetadataValue value : player.getMetadata("bowplustype")) {
 				if (value.getOwningPlugin().getDescription().getName().equals(this.getDescription().getName())) {
-					type = value.asString();
+					type = (String[]) value.value();
 					System.out.print("value found for " + player.getName() + ": "+type);
 				}
 			}
@@ -58,9 +58,9 @@ public class BowsPlus extends JavaPlugin implements Listener {
 			}
 			
 			try {
-				e = EntityType.valueOf(type);
+				e = EntityType.valueOf(type[0]);
 			} catch (IllegalArgumentException iax) {
-				m = Material.matchMaterial(type);
+				m = Material.matchMaterial(type[0]);
 			} 
 			
 			if (player.isOp() || Utils.hasPerms(player, e, m)) {
@@ -74,24 +74,31 @@ public class BowsPlus extends JavaPlugin implements Listener {
 				event.getEntity().remove();
 				
 				if (e == null) {
-					final Item c = l.getWorld().dropItem(l, new ItemStack(Material.ARROW));
+					final Item flyingItem = l.getWorld().dropItem(l, new ItemStack(Material.ARROW));
 					
-					final Material mat = m;
+					final Material flyingMat = m;
+					final String[] flyingArgs = type;
 					
 					class RunLater implements Runnable {
 						public void run() {
-							c.getItemStack().setType(mat);
-							c.setVelocity(v);
+							flyingItem.getItemStack().setType(flyingMat);
+
+							Utils.parseSubValues(flyingItem, flyingArgs);
+							
+							flyingItem.setVelocity(v);
 						}
 					}
 					Bukkit.getScheduler().runTaskLater(this, new RunLater(), 1L);
 				} else {
 					
-					final Entity c = l.getWorld().spawn(l, e.getEntityClass());
+					final Entity flyingEntity = l.getWorld().spawn(l, e.getEntityClass());
+					final String[] flyingArgs = type;
 					
 					class RunLater implements Runnable {
 						public void run() {
-							c.setVelocity(v);
+							Utils.parseSubValues(flyingEntity, flyingArgs);
+							
+							flyingEntity.setVelocity(v);
 						}
 					}
 					Bukkit.getScheduler().runTaskLater(this, new RunLater(), 1L);
