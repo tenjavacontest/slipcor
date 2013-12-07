@@ -2,3 +2,4 @@ main: com.tenjava.slipcor.Main
 name: Main
 description: Main
 author: slipcor
+version: 0.0.1
