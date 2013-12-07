@@ -57,6 +57,10 @@ public class BowsPlus extends JavaPlugin implements Listener {
 				}
 			}
 			
+			if (type == null) {
+				return;
+			}
+			
 			try {
 				e = EntityType.valueOf(type);
 			} catch (IllegalArgumentException iax) {
@@ -65,8 +69,6 @@ public class BowsPlus extends JavaPlugin implements Listener {
 			
 			if (player.isOp() || Utils.hasPerms(player, e, m)) {
 				if (e == null || m == null) {
-					player.sendMessage("You did not activate your bow!");
-					
 					return;
 				}
 			} else {
