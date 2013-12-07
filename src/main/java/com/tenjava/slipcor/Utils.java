@@ -34,30 +34,93 @@ public final class Utils {
 		}
 		
 		if (e == null) {
-			if (plugin.getConfig().getBoolean("uses.blacklist")) {
-				if (blacklist.contains(m.name())) {
-					return false;
-				}
-			}
-			if (plugin.getConfig().getBoolean("uses.whitelist")) {
-				if (!whitelist.contains(m.name())) {
-					return false;
-				}
+			if (blocked(m.name())) {
+				return false;
 			}
 			return p.hasPermission("bowsplus."+m.name().toLowerCase());
 		}
-		if (plugin.getConfig().getBoolean("uses.blacklist")) {
-			if (blacklist.contains(e.name())) {
+		
+		/**
+		 * mobs
+		 * projectiles
+		 * animals
+		 */
+		
+		switch (e) {
+		// mobs
+		case CREEPER:
+		case SKELETON:
+		case SPIDER:
+		case GIANT:
+		case ZOMBIE:
+		case SLIME:
+		case GHAST:
+		case PIG_ZOMBIE:
+		case ENDERMAN:
+		case CAVE_SPIDER:
+		case SILVERFISH:
+		case BLAZE:
+		case MAGMA_CUBE:
+		case WITCH:
+			if (blocked("MOBS")) {
 				return false;
 			}
+			break;
+			
+		//passive
+		case PIG:
+		case SHEEP:
+		case COW:
+		case CHICKEN:
+		case SQUID:
+		case WOLF:
+		case MUSHROOM_COW:
+		case OCELOT:
+		case HORSE:
+		case VILLAGER:
+		case BAT:
+			if (blocked("PASSIVE")) {
+				return false;
+			}
+			break;
+			
+		//boss
+		case ENDER_DRAGON:
+		case WITHER:
+			if (blocked("BOSS")) {
+				return false;
+			}
+			break;
+			
+		//defense
+		case SNOWMAN:
+		case IRON_GOLEM:
+			if (blocked("DEFENSE")) {
+				return false;
+			}
+			break;
+
 		}
-		if (plugin.getConfig().getBoolean("uses.whitelist")) {
-			if (!whitelist.contains(e.name())) {
-				return false;
-			}
+		
+		if (blocked(e.name())) {
+			return false;
 		}
 		
 		return p.hasPermission("bowsplus."+e.name().toLowerCase());
+	}
+
+	private static boolean blocked(String string) {
+		if (plugin.getConfig().getBoolean("uses.blacklist")) {
+			if (blacklist.contains(string)) {
+				return true;
+			}
+		}
+		if (plugin.getConfig().getBoolean("uses.whitelist")) {
+			if (!whitelist.contains(string)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public static void init(BowsPlus bowsPlus) {
