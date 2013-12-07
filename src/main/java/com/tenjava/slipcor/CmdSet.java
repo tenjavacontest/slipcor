@@ -65,9 +65,11 @@ public class CmdSet implements CommandExecutor {
 				} else if (e == null) {
 					player.setMetadata("bowplustype", new FixedMetadataValue(plugin, m.name()));
 					System.out.print("saving " + m.name() + " to " +player.getName());
+					player.sendMessage("Your bows now fire: " + m.name());
 				} else {
 					player.setMetadata("bowplustype", new FixedMetadataValue(plugin, e.name()));
 					System.out.print("saving " +  e.name() + " to " +player.getName());
+					player.sendMessage("Your bows now fire: " + e.name());
 				}
 			} else {
 				sender.sendMessage("You don't have the permission to spawn this!");

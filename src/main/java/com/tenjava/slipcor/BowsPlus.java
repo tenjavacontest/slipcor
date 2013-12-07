@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
@@ -23,6 +24,7 @@ public class BowsPlus extends JavaPlugin implements Listener {
 		Bukkit.getPluginCommand("bowsplusreload").setExecutor(new CmdReload(this));
 		Bukkit.getPluginCommand("bowsplus").setExecutor(new CmdSet(this));
 		
+		Utils.init(this);
 	}
 	
 	@Override
@@ -72,7 +74,7 @@ public class BowsPlus extends JavaPlugin implements Listener {
 				event.getEntity().remove();
 				
 				if (e == null) {
-					final Item c = l.getWorld().spawn(l, Item.class);
+					final Item c = l.getWorld().dropItem(l, new ItemStack(Material.ARROW));
 					
 					final Material mat = m;
 					
