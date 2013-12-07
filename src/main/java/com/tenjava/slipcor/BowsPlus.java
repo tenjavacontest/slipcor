@@ -62,43 +62,41 @@ public class BowsPlus extends JavaPlugin implements Listener {
 			} 
 			
 			if (player.isOp() || Utils.hasPerms(player, e, m)) {
-				if (e == null || m == null) {
+				if (e == null && m == null) {
 					return;
+				}
+				
+				final Vector v = event.getEntity().getVelocity();
+				Location l = event.getEntity().getLocation();
+				
+				event.getEntity().remove();
+				
+				if (e == null) {
+					final Item c = l.getWorld().spawn(l, Item.class);
+					
+					final Material mat = m;
+					
+					class RunLater implements Runnable {
+						public void run() {
+							c.getItemStack().setType(mat);
+							c.setVelocity(v);
+						}
+					}
+					Bukkit.getScheduler().runTaskLater(this, new RunLater(), 1L);
+				} else {
+					
+					final Entity c = l.getWorld().spawn(l, e.getEntityClass());
+					
+					class RunLater implements Runnable {
+						public void run() {
+							c.setVelocity(v);
+						}
+					}
+					Bukkit.getScheduler().runTaskLater(this, new RunLater(), 1L);
 				}
 			} else {
 				player.sendMessage("You don't have the permission to spawn this!");
 			}
-			
-			final Vector v = event.getEntity().getVelocity();
-			Location l = event.getEntity().getLocation();
-			
-			event.getEntity().remove();
-			
-			if (e == null) {
-				final Item c = l.getWorld().spawn(l, Item.class);
-				
-				final Material mat = m;
-				
-				class RunLater implements Runnable {
-					public void run() {
-						c.getItemStack().setType(mat);
-						c.setVelocity(v);
-					}
-				}
-				Bukkit.getScheduler().runTaskLater(this, new RunLater(), 1L);
-			} else {
-				
-				final Entity c = l.getWorld().spawn(l, e.getEntityClass());
-				
-				class RunLater implements Runnable {
-					public void run() {
-						c.setVelocity(v);
-					}
-				}
-				Bukkit.getScheduler().runTaskLater(this, new RunLater(), 1L);
-			}
-			
-			
 		}
 	}
 }
