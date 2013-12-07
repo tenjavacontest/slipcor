@@ -3,6 +3,7 @@ TODO
 * check for monster restrictions (world tick thingies)
 * permissions
 * pre-setup (yml)
+* cost
 * full mob support
 ** jockeys
 ** babies

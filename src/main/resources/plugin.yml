@@ -2,4 +2,19 @@ main: com.tenjava.slipcor.BowsPlus
 name: BowsPlus
 description: BowsPlus
 author: slipcor
-version: 0.0.1
+version: 0.0.2
+commands:
+  bowplus:
+    aliases: ['bp']
+    description: add stuff to your bow
+    usage: /<command> [TYPE] {subvalue1} {subvalue2}
+  bowplusreload:
+    aliases: ['bpr']
+    description: reload the command
+    usage: /<command>
+    permission: bowsplus.admin
+permissions:
+  bowsplus.admin:
+    description: allow to admin the plugin
+    default: op
+    permission-message: you do not have the permission <permission> 
