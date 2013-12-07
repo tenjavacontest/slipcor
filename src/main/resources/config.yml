@@ -1,0 +1,8 @@
+uses:
+  blacklist: true
+  cost: false
+  whitelist: true
+blacklist:
+- BEDROCK
+whitelist:
+- GRAVEL
