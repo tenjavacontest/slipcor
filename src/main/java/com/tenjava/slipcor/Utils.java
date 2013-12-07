@@ -10,7 +10,9 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 
+import com.tenjava.slipcor.api.IFlyingExpandable;
 import com.tenjava.slipcor.api.IFlyingRidable;
+import com.tenjava.slipcor.impl.FlyingExpandable;
 import com.tenjava.slipcor.impl.FlyingRidable;
 
 public final class Utils {
@@ -130,18 +132,30 @@ public final class Utils {
 			if (flying != null) {
 				flying.parseArguments(flyingArgs);
 			}
+			break;
+
+		// expandable
+		case EXPERIENCE_ORB:
+		case PAINTING:
+		case FALLING_BLOCK:
+		case FIREWORK:
+		case MINECART_MOB_SPAWNER:
+		case PRIMED_TNT:
 			
+			IFlyingExpandable expandable = FlyingExpandable.parseToFlyingRidable(flyingEntity);
+			if (expandable != null) {
+				expandable.parseArguments(flyingArgs);
+			}
+			break;
 		// plain
 		case LEASH_HITCH:
 		case ARROW:
 		case SNOWBALL:
-		case FIREBALL:
 		case SMALL_FIREBALL:
+		case FIREBALL:
 		case ENDER_PEARL:
 		case ENDER_SIGNAL: //<<< what?
-		case ITEM_FRAME:
 		case WITHER_SKULL:
-		case PRIMED_TNT:
 		case BOAT:
 		case MINECART:
 		case MINECART_TNT:
@@ -154,19 +168,13 @@ public final class Utils {
 		case ENDER_CRYSTAL:
 		case FISHING_HOOK:
 		case LIGHTNING:
-		
-			
-		// expandable
-		case EXPERIENCE_ORB:
-		case PAINTING:
 		case THROWN_EXP_BOTTLE:
-		case FALLING_BLOCK:
-		case FIREWORK:
-		case MINECART_MOB_SPAWNER:
-		case SPLASH_POTION:
 		case EGG:
 		
-			// invalid
+			
+			
+			
+		// invalid
 		default:
 			return;
 		

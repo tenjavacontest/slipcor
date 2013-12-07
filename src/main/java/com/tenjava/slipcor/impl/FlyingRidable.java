@@ -5,14 +5,14 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 
 import com.tenjava.slipcor.api.IFlyingRidable;
-import com.tenjava.slipcor.impl.flying.FlyingRidableCreeper;
-import com.tenjava.slipcor.impl.flying.FlyingRidableHorse;
-import com.tenjava.slipcor.impl.flying.FlyingRidableMagmaCube;
-import com.tenjava.slipcor.impl.flying.FlyingRidableOcelot;
-import com.tenjava.slipcor.impl.flying.FlyingRidableSheep;
-import com.tenjava.slipcor.impl.flying.FlyingRidableSkeleton;
-import com.tenjava.slipcor.impl.flying.FlyingRidableSlime;
-import com.tenjava.slipcor.impl.flying.FlyingRidableVillager;
+import com.tenjava.slipcor.impl.ridable.FlyingRidableCreeper;
+import com.tenjava.slipcor.impl.ridable.FlyingRidableHorse;
+import com.tenjava.slipcor.impl.ridable.FlyingRidableMagmaCube;
+import com.tenjava.slipcor.impl.ridable.FlyingRidableOcelot;
+import com.tenjava.slipcor.impl.ridable.FlyingRidableSheep;
+import com.tenjava.slipcor.impl.ridable.FlyingRidableSkeleton;
+import com.tenjava.slipcor.impl.ridable.FlyingRidableSlime;
+import com.tenjava.slipcor.impl.ridable.FlyingRidableVillager;
 
 public class FlyingRidable implements IFlyingRidable {
 	protected final Entity entity;

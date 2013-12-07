@@ -1,4 +1,4 @@
-package com.tenjava.slipcor.impl.flying;
+package com.tenjava.slipcor.impl.ridable;
 
 import org.bukkit.DyeColor;
 import org.bukkit.entity.Entity;
