@@ -1,5 +1,5 @@
-main: com.tenjava.slipcor.Main
-name: Main
-description: Main
+main: com.tenjava.slipcor.BowsPlus
+name: BowsPlus
+description: BowsPlus
 author: slipcor
 version: 0.0.1

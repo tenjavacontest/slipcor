@@ -11,7 +11,7 @@ import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
-public class Main extends JavaPlugin implements Listener {
+public class BowsPlus extends JavaPlugin implements Listener {
 	
 	@Override
 	public void onEnable() {
