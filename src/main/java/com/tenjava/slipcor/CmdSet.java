@@ -60,10 +60,14 @@ public class CmdSet implements CommandExecutor {
 			} 
 			
 			if (player.isOp() || Utils.hasPerms(player, e, m)) {
-				if (e == null) {
+				if (e == null && m == null) {
+					sender.sendMessage("Unknown item or entity: "+type+"!");
+				} else if (e == null) {
 					player.setMetadata("bowplustype", new FixedMetadataValue(plugin, m.name()));
+					System.out.print("saving " + m.name() + " to " +player.getName());
 				} else {
 					player.setMetadata("bowplustype", new FixedMetadataValue(plugin, e.name()));
+					System.out.print("saving " +  e.name() + " to " +player.getName());
 				}
 			} else {
 				sender.sendMessage("You don't have the permission to spawn this!");
@@ -71,9 +75,10 @@ public class CmdSet implements CommandExecutor {
 			
 		} else {
 			sender.sendMessage("You don't have a bow in your hand. Wait.. you don't even have hands. What the?");
+			
 		}
-		
-		return false;
+
+		return true;
 	}
 
 }

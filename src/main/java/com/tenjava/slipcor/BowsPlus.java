@@ -47,6 +47,7 @@ public class BowsPlus extends JavaPlugin implements Listener {
 			for (MetadataValue value : player.getMetadata("bowplustype")) {
 				if (value.getOwningPlugin().getDescription().getName().equals(this.getDescription().getName())) {
 					type = value.asString();
+					System.out.print("value found for " + player.getName() + ": "+type);
 				}
 			}
 			
