@@ -3,6 +3,7 @@ package com.tenjava.slipcor;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -24,7 +25,7 @@ public final class Utils {
 	}
 
 	public static boolean hasMats(final Player player, final Material material, final String[] flyingArgs) {
-		if (!plugin.getConfig().getBoolean("uses.cost")) {
+		if (!plugin.getConfig().getBoolean("uses.cost") || player.getGameMode() == GameMode.CREATIVE) {
 			return true;
 		}
 		
