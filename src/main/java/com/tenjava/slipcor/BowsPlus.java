@@ -67,7 +67,8 @@ public class BowsPlus extends JavaPlugin implements Listener {
 					return;
 				}
 				
-				if (!Utils.hasPerms(player, eType, material)) {
+				if (!Utils.hasMats(player, material, type)) {
+					player.sendMessage(prefix + ChatColor.RED + "You don't have enough " + material.name());
 					return;
 				}
 				

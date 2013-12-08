@@ -28,7 +28,7 @@ public final class Utils {
 			return true;
 		}
 		
-		final ItemStack removal = new ItemStack(material);
+		final ItemStack removal = new ItemStack(material, 1);
 		
 		for (String value : flyingArgs) {
 			if (value.startsWith("amount:")) {
