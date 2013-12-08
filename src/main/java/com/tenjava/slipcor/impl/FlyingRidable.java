@@ -16,11 +16,11 @@ import com.tenjava.slipcor.impl.ridable.FlyingRidableVillager;
 public class FlyingRidable  {
 	protected final Entity entity;
 	
-	public FlyingRidable(Entity flyingEntity) {
+	public FlyingRidable(final Entity flyingEntity) {
 		entity = flyingEntity;
 	}
 
-	public static FlyingRidable parseToFlyingRidable(Entity flyingEntity) {
+	public static FlyingRidable parseToFlyingRidable(final Entity flyingEntity) {
 		
 		switch (flyingEntity.getType()) {
 			// standard
@@ -65,7 +65,7 @@ public class FlyingRidable  {
 		return null;
 	}
 
-	public void parseArguments(String[] flyingArgs) {
+	public void parseArguments(final String[] flyingArgs) {
 		/**
 		 * baby
 		 * rider:RIDER

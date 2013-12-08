@@ -13,13 +13,13 @@ public class CmdSet implements CommandExecutor {
 	
 	private final BowsPlus plugin;
 
-	public CmdSet(BowsPlus bowsPlus) {
+	public CmdSet(final BowsPlus bowsPlus) {
 		plugin = bowsPlus;
 	}
 
-	public boolean onCommand(CommandSender sender,
-			Command cmd, String label,
-			String[] args) {
+	public boolean onCommand(final CommandSender sender,
+			final Command cmd, final String label,
+			final String[] args) {
 		if (sender instanceof Player) {
 			
 			if (args.length < 1) {
@@ -27,9 +27,9 @@ public class CmdSet implements CommandExecutor {
 				return false;
 			}
 			
-			Player player = (Player) sender;
+			final Player player = (Player) sender;
 			
-			String type = args[0].toUpperCase();
+			final String type = args[0].toUpperCase();
 			
 			/*
 			 * 
@@ -39,27 +39,26 @@ public class CmdSet implements CommandExecutor {
 			 * 
 			 */
 			
-			EntityType e = null;
-			Material m = null;
+			EntityType eType = null;
+			Material material = null;
 			
 			try {
-				e = EntityType.valueOf(type);
+				eType = EntityType.valueOf(type);
 			} catch (IllegalArgumentException iax) {
-				m = Material.matchMaterial(type);
+				material = Material.matchMaterial(type);
 			} 
 			
-			if (player.isOp() || Utils.hasPerms(player, e, m)) {
+			if (player.isOp() || Utils.hasPerms(player, eType, material)) {
 
-				if (e == null && m == null) {
+				if (eType == null && material == null) {
 					sender.sendMessage(plugin.prefix + ChatColor.RED + "Unknown item or entity: "+type+"!");
 					return true;
-				} else if (e == null) {
-					args[0] = m.name();
+				} else if (eType == null) {
+					args[0] = material.name();
 				} else {
-					args[0] = e.name();
+					args[0] = eType.name();
 				}
 				player.setMetadata("bowplustype", new FixedMetadataValue(plugin, args));
-				System.out.print("saving " + args[0] + " to " +player.getName());
 				player.sendMessage(plugin.prefix + ChatColor.DARK_GRAY + "Your bows now fire: " + ChatColor.WHITE + args[0]);
 			} else {
 				sender.sendMessage(plugin.prefix + ChatColor.RED + "You don't have the permission to spawn this!");

@@ -7,11 +7,11 @@ import com.tenjava.slipcor.impl.FlyingExpandable;
 
 public class FlyingExpandableMinecartMobSpawner extends FlyingExpandable {
 
-	public FlyingExpandableMinecartMobSpawner(Entity flyingEntity) {
+	public FlyingExpandableMinecartMobSpawner(final Entity flyingEntity) {
 		super(flyingEntity);
 	}
 
-	public void parseArguments(String[] flyingArgs) {
+	public void parseArguments(final String[] flyingArgs) {
 		super.parseArguments(flyingArgs);
 		
 		SpawnerMinecart sm = (SpawnerMinecart) entity;

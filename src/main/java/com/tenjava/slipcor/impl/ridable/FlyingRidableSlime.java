@@ -7,12 +7,12 @@ import com.tenjava.slipcor.impl.FlyingRidable;
 
 public class FlyingRidableSlime extends FlyingRidable {
 
-	public FlyingRidableSlime(Entity flyingEntity) {
+	public FlyingRidableSlime(final Entity flyingEntity) {
 		super(flyingEntity);
 	}
 
 	@Override
-	public void parseArguments(String[] flyingArgs) {
+	public void parseArguments(final String[] flyingArgs) {
 		super.parseArguments(flyingArgs);
 		
 		/**

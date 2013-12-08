@@ -33,9 +33,9 @@ public class BowsPlus extends JavaPlugin implements Listener {
 	}
 	
 	@EventHandler
-	public void onBowFire(ProjectileLaunchEvent event) {
+	public void onBowFire(final ProjectileLaunchEvent event) {
 		if (event.getEntity().getShooter() instanceof Player) {
-			Player player = (Player) event.getEntity().getShooter();
+			final Player player = (Player) event.getEntity().getShooter();
 			
 			if (player.getItemInHand() == null || player.getItemInHand().getType() != Material.BOW) {
 				return;
@@ -72,7 +72,7 @@ public class BowsPlus extends JavaPlugin implements Listener {
 				}
 				
 				final Vector velocity = event.getEntity().getVelocity();
-				Location location = event.getEntity().getLocation();
+				final Location location = event.getEntity().getLocation();
 				
 				event.getEntity().remove();
 				

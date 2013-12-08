@@ -6,12 +6,12 @@ import com.tenjava.slipcor.impl.FlyingRidable;
 
 public class FlyingRidableMagmaCube extends FlyingRidable {
 
-	public FlyingRidableMagmaCube(Entity flyingEntity) {
+	public FlyingRidableMagmaCube(final Entity flyingEntity) {
 		super(flyingEntity);
 	}
 
 	@Override
-	public void parseArguments(String[] flyingArgs) {
+	public void parseArguments(final String[] flyingArgs) {
 		super.parseArguments(flyingArgs);
 		
 		/**
@@ -20,7 +20,7 @@ public class FlyingRidableMagmaCube extends FlyingRidable {
 		
 		for (String value : flyingArgs) {
 			if (value.startsWith("size:")) {
-				String[] split = value.split("size:");
+				final String[] split = value.split("size:");
 				try {
 
 					MagmaCube mc = (MagmaCube) entity;

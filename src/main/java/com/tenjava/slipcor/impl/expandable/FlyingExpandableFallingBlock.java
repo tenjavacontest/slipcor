@@ -10,11 +10,11 @@ import com.tenjava.slipcor.impl.FlyingExpandable;
 
 public class FlyingExpandableFallingBlock extends FlyingExpandable {
 
-	public FlyingExpandableFallingBlock(Entity flyingEntity) {
+	public FlyingExpandableFallingBlock(final Entity flyingEntity) {
 		super(flyingEntity);
 	}
 
-	public void parseArguments(String[] flyingArgs) {
+	public void parseArguments(final String[] flyingArgs) {
 		super.parseArguments(flyingArgs);
 		
 		/**
@@ -26,13 +26,13 @@ public class FlyingExpandableFallingBlock extends FlyingExpandable {
 		
 		for (String value : flyingArgs) {
 			if (value.startsWith("material:")) {
-				String[] split = value.split("material:");
-				Material matt = Material.matchMaterial(split[1]);
+				final String[] split = value.split("material:");
+				final Material matt = Material.matchMaterial(split[1]);
 				if (mat != null && matt.isBlock()) {
 					mat = matt;
 				}
 			} else if (value.startsWith("data:")) {
-				String[] split = value.split("data:");
+				final String[] split = value.split("data:");
 				data = Byte.parseByte(split[1]);
 			}
 		}
@@ -41,8 +41,8 @@ public class FlyingExpandableFallingBlock extends FlyingExpandable {
 			return;
 		}
 		
-		Vector v = entity.getVelocity();
-		Location loc = entity.getLocation();
+		final Vector v = entity.getVelocity();
+		final Location loc = entity.getLocation();
 		
 		entity.remove();
 		FallingBlock block = loc.getWorld().spawnFallingBlock(loc, mat, data);

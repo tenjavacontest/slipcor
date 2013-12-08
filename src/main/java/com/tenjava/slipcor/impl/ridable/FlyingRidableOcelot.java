@@ -6,12 +6,12 @@ import com.tenjava.slipcor.impl.FlyingRidable;
 
 public class FlyingRidableOcelot extends FlyingRidable {
 
-	public FlyingRidableOcelot(Entity flyingEntity) {
+	public FlyingRidableOcelot(final Entity flyingEntity) {
 		super(flyingEntity);
 	}
 
 	@Override
-	public void parseArguments(String[] flyingArgs) {
+	public void parseArguments(final String[] flyingArgs) {
 		super.parseArguments(flyingArgs);
 		
 		/**
@@ -20,18 +20,18 @@ public class FlyingRidableOcelot extends FlyingRidable {
 		
 		for (String value : flyingArgs) {
 			if (value.startsWith("type:")) {
-				String[] split = value.split("type:");
+				final String[] split = value.split("type:");
 				try {
-					Ocelot.Type v = Ocelot.Type.valueOf(split[1].toUpperCase());
+					final Ocelot.Type v = Ocelot.Type.valueOf(split[1].toUpperCase());
 
-					Ocelot ocelot = (Ocelot) entity;
+					final Ocelot ocelot = (Ocelot) entity;
 					ocelot.setCatType(v);
 				} catch (Exception e) {
 					
 				}
 			} else if (value.equals("tamed")) {
 				try {
-					Ocelot ocelot = (Ocelot) entity;
+					final Ocelot ocelot = (Ocelot) entity;
 					ocelot.setTamed(true);
 				} catch (Exception e) {
 					

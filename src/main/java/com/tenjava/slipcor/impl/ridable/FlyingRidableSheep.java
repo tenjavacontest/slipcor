@@ -8,12 +8,12 @@ import com.tenjava.slipcor.impl.FlyingRidable;
 
 public class FlyingRidableSheep extends FlyingRidable {
 
-	public FlyingRidableSheep(Entity flyingEntity) {
+	public FlyingRidableSheep(final Entity flyingEntity) {
 		super(flyingEntity);
 	}
 
 	@Override
-	public void parseArguments(String[] flyingArgs) {
+	public void parseArguments(final String[] flyingArgs) {
 		super.parseArguments(flyingArgs);
 		
 		/**
@@ -23,7 +23,7 @@ public class FlyingRidableSheep extends FlyingRidable {
 		
 		for (String value : flyingArgs) {
 			if (value.startsWith("color:")) {
-				String[] split = value.split("color:");
+				final String[] split = value.split("color:");
 				try {
 					DyeColor v = DyeColor.valueOf(split[1].toUpperCase());
 
@@ -33,7 +33,7 @@ public class FlyingRidableSheep extends FlyingRidable {
 					
 				}
 			} else if (value.equals("sheared")) {
-				Sheep sheep = (Sheep) entity;
+				final Sheep sheep = (Sheep) entity;
 				sheep.setSheared(true);
 			}
 		}

@@ -23,12 +23,12 @@ public final class Utils {
 	private Utils() {
 	}
 
-	public static boolean hasMats(Player player, Material material, String[] flyingArgs) {
+	public static boolean hasMats(final Player player, final Material material, final String[] flyingArgs) {
 		if (!plugin.getConfig().getBoolean("uses.cost")) {
 			return true;
 		}
 		
-		ItemStack removal = new ItemStack(material);
+		final ItemStack removal = new ItemStack(material);
 		
 		for (String value : flyingArgs) {
 			if (value.startsWith("amount:")) {
@@ -51,7 +51,7 @@ public final class Utils {
 		return false;
 	}
 	
-	public static boolean hasPerms(Player player, EntityType eType, Material material) {
+	public static boolean hasPerms(final Player player, final EntityType eType, final Material material) {
 		
 		if (eType == null && material == null) {
 			return false;
@@ -125,7 +125,7 @@ public final class Utils {
 		return player.hasPermission("bowsplus."+eType.name().toLowerCase());
 	}
 
-	private static boolean blocked(String string) {
+	private static boolean blocked(final String string) {
 		if (plugin.getConfig().getBoolean("uses.blacklist")) {
 			if (blacklist.contains(string)) {
 				return true;
@@ -139,7 +139,7 @@ public final class Utils {
 		return false;
 	}
 
-	public static void init(BowsPlus bowsPlus) {
+	public static void init(final BowsPlus bowsPlus) {
 		plugin = bowsPlus;
 		reload();
 	}
@@ -149,7 +149,7 @@ public final class Utils {
 		whitelist = plugin.getConfig().getStringList("whitelist");
 	}
 
-	public static void parseSubValues(Item flyingItem, String[] flyingArgs) {
+	public static void parseSubValues(final Item flyingItem, final String[] flyingArgs) {
 		/**
 		 * - amount:1
 		 * - durabilty:1
@@ -176,7 +176,7 @@ public final class Utils {
 		
 	}
 
-	public static void parseSubValues(Entity flyingEntity, String[] flyingArgs) {
+	public static void parseSubValues(final Entity flyingEntity, final String[] flyingArgs) {
 		switch (flyingEntity.getType()) {
 			
 			
@@ -259,7 +259,7 @@ public final class Utils {
 		}
 	}
 
-	public static String[] lowerCase(String[] args) {
+	public static String[] lowerCase(final String[] args) {
 		String[] result = new String[args.length];
 		result[0] = args[0];
 		for (int i=1;i<args.length;i++) {

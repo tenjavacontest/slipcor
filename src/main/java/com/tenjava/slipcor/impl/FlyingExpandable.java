@@ -11,11 +11,11 @@ import com.tenjava.slipcor.impl.expandable.FlyingExpandablePrimedTNT;
 public class FlyingExpandable {
 	protected final Entity entity;
 
-	public FlyingExpandable(Entity flyingEntity) {
+	public FlyingExpandable(final Entity flyingEntity) {
 		entity = flyingEntity;
 	}
 
-	public static FlyingExpandable parseToFlyingRidable(Entity flyingEntity) {
+	public static FlyingExpandable parseToFlyingRidable(final Entity flyingEntity) {
 		switch (flyingEntity.getType()) {
 		case EXPERIENCE_ORB:
 			return new FlyingExpandableExperienceOrb(flyingEntity);
@@ -31,7 +31,7 @@ public class FlyingExpandable {
 		return null;
 	}
 
-	public void parseArguments(String[] flyingArgs) {
+	public void parseArguments(final String[] flyingArgs) {
 	}
 
 }

@@ -9,12 +9,12 @@ import com.tenjava.slipcor.impl.FlyingRidable;
 
 public class FlyingRidableHorse extends FlyingRidable {
 
-	public FlyingRidableHorse(Entity flyingEntity) {
+	public FlyingRidableHorse(final Entity flyingEntity) {
 		super(flyingEntity);
 	}
 
 	@Override
-	public void parseArguments(String[] flyingArgs) {
+	public void parseArguments(final String[] flyingArgs) {
 		super.parseArguments(flyingArgs);
 		
 		/**
@@ -26,9 +26,9 @@ public class FlyingRidableHorse extends FlyingRidable {
 			if (value.startsWith("variant:")) {
 				String[] split = value.split("variant:");
 				try {
-					Variant v = Variant.valueOf(split[1].toUpperCase());
+					final Variant v = Variant.valueOf(split[1].toUpperCase());
 
-					Horse horse = (Horse) entity;
+					final Horse horse = (Horse) entity;
 					horse.setVariant(v);
 				} catch (Exception e) {
 					
@@ -36,9 +36,9 @@ public class FlyingRidableHorse extends FlyingRidable {
 			} else if (value.startsWith("style:")) {
 				String[] split = value.split("style:");
 				try {
-					Style style = Style.valueOf(split[1].toUpperCase());
+					final Style style = Style.valueOf(split[1].toUpperCase());
 
-					Horse horse = (Horse) entity;
+					final Horse horse = (Horse) entity;
 					horse.setStyle(style);
 				} catch (Exception e) {
 					

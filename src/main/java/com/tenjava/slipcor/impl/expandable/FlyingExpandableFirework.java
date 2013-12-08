@@ -11,18 +11,18 @@ import com.tenjava.slipcor.impl.FlyingExpandable;
 
 public class FlyingExpandableFirework extends FlyingExpandable {
 
-	public FlyingExpandableFirework(Entity flyingEntity) {
+	public FlyingExpandableFirework(final Entity flyingEntity) {
 		super(flyingEntity);
 	}
 
-	public void parseArguments(String[] flyingArgs) {
+	public void parseArguments(final String[] flyingArgs) {
 		super.parseArguments(flyingArgs);
 		
 		//TODO add more varieties. A LOT of work :P
 		
-		Firework fw = (Firework) entity;
+		final Firework fw = (Firework) entity;
 		
-		FireworkMeta fwm = fw.getFireworkMeta();
+		final FireworkMeta fwm = fw.getFireworkMeta();
 		fwm.setPower(1);
 		
 		fwm.addEffect(FireworkEffect.builder().flicker(true).withColor(Color.BLACK).withColor(Color.WHITE).with(Type.BALL).build());

@@ -8,12 +8,12 @@ import com.tenjava.slipcor.impl.FlyingRidable;
 
 public class FlyingRidableVillager extends FlyingRidable {
 
-	public FlyingRidableVillager(Entity flyingEntity) {
+	public FlyingRidableVillager(final Entity flyingEntity) {
 		super(flyingEntity);
 	}
 
 	@Override
-	public void parseArguments(String[] flyingArgs) {
+	public void parseArguments(final String[] flyingArgs) {
 		super.parseArguments(flyingArgs);
 		
 		/**

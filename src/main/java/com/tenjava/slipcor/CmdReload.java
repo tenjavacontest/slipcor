@@ -8,16 +8,16 @@ public class CmdReload implements CommandExecutor {
 	
 	private final BowsPlus plugin;
 
-	public CmdReload(BowsPlus bowsPlus) {
+	public CmdReload(final BowsPlus bowsPlus) {
 		plugin = bowsPlus;
 	}
 
-	public boolean onCommand(CommandSender paramCommandSender,
-			Command paramCommand, String paramString,
-			String[] paramArrayOfString) {
+	public boolean onCommand(final CommandSender sender,
+			final Command cmd, final String label,
+			final String[] args) {
 		plugin.reloadConfig();
 		Utils.reload();
-		paramCommandSender.sendMessage("Config reloaded!");
+		sender.sendMessage("Config reloaded!");
 		return true;
 	}
 

@@ -7,20 +7,20 @@ import com.tenjava.slipcor.impl.FlyingExpandable;
 
 public class FlyingExpandablePrimedTNT extends FlyingExpandable {
 
-	public FlyingExpandablePrimedTNT(Entity flyingEntity) {
+	public FlyingExpandablePrimedTNT(final Entity flyingEntity) {
 		super(flyingEntity);
 	}
 
-	public void parseArguments(String[] flyingArgs) {
+	public void parseArguments(final String[] flyingArgs) {
 		super.parseArguments(flyingArgs);
 
 		
 		for (String value : flyingArgs) {
 			if (value.startsWith("fuse:")) {
 				
-				String[] split = value.split("fuse:");
+				final String[] split = value.split("fuse:");
 				
-				TNTPrimed orb = (TNTPrimed) entity;
+				final TNTPrimed orb = (TNTPrimed) entity;
 				
 				orb.setFuseTicks(Integer.parseInt(split[1]));
 			}
