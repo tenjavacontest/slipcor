@@ -3,12 +3,12 @@ package com.tenjava.slipcor;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import com.tenjava.slipcor.impl.FlyingExpandable;
 import com.tenjava.slipcor.impl.FlyingRidable;
@@ -23,6 +23,34 @@ public final class Utils {
 	private Utils() {
 	}
 
+	public static boolean hasMats(Player player, Material material, String[] flyingArgs) {
+		if (!plugin.getConfig().getBoolean("uses.cost")) {
+			return true;
+		}
+		
+		ItemStack removal = new ItemStack(material);
+		
+		for (String value : flyingArgs) {
+			if (value.startsWith("amount:")) {
+				String[] split = value.split("amount:");
+				int amount = Integer.parseInt(split[1]);
+				
+				removal.setAmount(amount);
+			} else if (value.startsWith("data:")) {
+				String[] split = value.split("data:");
+				byte data = Byte.parseByte(split[1]);
+				removal.getData().setData(data);
+			}
+		}
+		
+		if (player.getInventory().containsAtLeast(removal, 1))) {
+			player.getInventory().remove(removal);
+			player.updateInventory();
+			return true;
+		}
+		return false;
+	}
+	
 	public static boolean hasPerms(Player player, EntityType eType, Material material) {
 		
 		if (eType == null && material == null) {

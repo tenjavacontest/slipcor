@@ -1,6 +1,6 @@
 TODO
 =======
-* cost
+NULL
 
 DONE
 =======
@@ -17,6 +17,7 @@ DONE
 ** BOSS
 ** PASSIVE
 * permissions
+* cost
 
 NOT DONE
 =======

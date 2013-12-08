@@ -64,6 +64,10 @@ public class BowsPlus extends JavaPlugin implements Listener {
 					return;
 				}
 				
+				if (!Utils.hasPerms(player, eType, material)) {
+					return;
+				}
+				
 				final Vector velocity = event.getEntity().getVelocity();
 				Location location = event.getEntity().getLocation();
 				
