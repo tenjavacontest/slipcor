@@ -1,4 +1,5 @@
 uses:
+  arrows: true
   blacklist: true
   cost: false
   whitelist: true

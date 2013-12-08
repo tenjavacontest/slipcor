@@ -1,6 +1,7 @@
 package com.tenjava.slipcor;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
@@ -102,6 +103,9 @@ public class BowsPlus extends JavaPlugin implements Listener {
 						}
 					}
 					Bukkit.getScheduler().runTaskLater(this, new RunLater(), 1L);
+				}
+				if (player.getGameMode() != GameMode.CREATIVE && !getConfig().getBoolean("uses.arrows")) {
+					player.getInventory().addItem(new ItemStack(Material.ARROW, 1));
 				}
 			} else {
 				player.sendMessage("You don't have the permission to spawn this!");
