@@ -43,7 +43,7 @@ public final class Utils {
 			}
 		}
 		
-		if (player.getInventory().containsAtLeast(removal, 1))) {
+		if (player.getInventory().containsAtLeast(removal, 1)) {
 			player.getInventory().remove(removal);
 			player.updateInventory();
 			return true;
