@@ -16,6 +16,7 @@ public class CmdReload implements CommandExecutor {
 			Command paramCommand, String paramString,
 			String[] paramArrayOfString) {
 		plugin.reloadConfig();
+		Utils.reload();
 		
 		return true;
 	}

@@ -10,8 +10,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 
-import com.tenjava.slipcor.api.IFlyingExpandable;
-import com.tenjava.slipcor.api.IFlyingRidable;
 import com.tenjava.slipcor.impl.FlyingExpandable;
 import com.tenjava.slipcor.impl.FlyingRidable;
 
@@ -24,30 +22,22 @@ public final class Utils {
 
 	private Utils() {
 	}
-	
-	public static String loreString = "" + ChatColor.AQUA + ChatColor.BLUE + ChatColor.BLACK;
 
-	public static boolean hasPerms(Player p, EntityType e, Material m) {
+	public static boolean hasPerms(Player player, EntityType eType, Material material) {
 		
-		if (e == null && m == null) {
+		if (eType == null && material == null) {
 			return false;
 		}
 		
-		if (e == null) {
-			if (blocked(m.name())) {
+		if (eType == null) {
+			if (blocked(material.name())) {
 				return false;
 			}
-			return p.hasPermission("bowsplus."+m.name().toLowerCase());
+			return player.hasPermission("bowsplus."+material.name().toLowerCase());
 		}
 		
-		/**
-		 * mobs
-		 * projectiles
-		 * animals
-		 */
+		switch (eType) {
 		
-		switch (e) {
-		// mobs
 		case CREEPER:
 		case SKELETON:
 		case SPIDER:
@@ -67,7 +57,7 @@ public final class Utils {
 			}
 			break;
 			
-		//passive
+		
 		case PIG:
 		case SHEEP:
 		case COW:
@@ -84,7 +74,6 @@ public final class Utils {
 			}
 			break;
 			
-		//boss
 		case ENDER_DRAGON:
 		case WITHER:
 			if (blocked("BOSS")) {
@@ -92,7 +81,6 @@ public final class Utils {
 			}
 			break;
 			
-		//defense
 		case SNOWMAN:
 		case IRON_GOLEM:
 			if (blocked("DEFENSE")) {
@@ -102,11 +90,11 @@ public final class Utils {
 
 		}
 		
-		if (blocked(e.name())) {
+		if (blocked(eType.name())) {
 			return false;
 		}
 		
-		return p.hasPermission("bowsplus."+e.name().toLowerCase());
+		return player.hasPermission("bowsplus."+eType.name().toLowerCase());
 	}
 
 	private static boolean blocked(String string) {
@@ -191,7 +179,7 @@ public final class Utils {
 		case IRON_GOLEM:
 		case HORSE:
 		case VILLAGER:
-			IFlyingRidable flying = FlyingRidable.parseToFlyingRidable(flyingEntity);
+			FlyingRidable flying = FlyingRidable.parseToFlyingRidable(flyingEntity);
 			if (flying != null) {
 				flying.parseArguments(flyingArgs);
 			}
@@ -199,13 +187,12 @@ public final class Utils {
 
 		// expandable
 		case EXPERIENCE_ORB:
-		case PAINTING:
 		case FALLING_BLOCK:
 		case FIREWORK:
 		case MINECART_MOB_SPAWNER:
 		case PRIMED_TNT:
 			
-			IFlyingExpandable expandable = FlyingExpandable.parseToFlyingRidable(flyingEntity);
+			FlyingExpandable expandable = FlyingExpandable.parseToFlyingRidable(flyingEntity);
 			if (expandable != null) {
 				expandable.parseArguments(flyingArgs);
 			}
@@ -242,5 +229,14 @@ public final class Utils {
 			return;
 		
 		}
+	}
+
+	public static String[] lowerCase(String[] args) {
+		String[] result = new String[args.length];
+		result[0] = args[0];
+		for (int i=1;i<args.length;i++) {
+			result[i] = args[i].toLowerCase();
+		}
+		return result;
 	}
 }

@@ -24,12 +24,9 @@ public class BowsPlus extends JavaPlugin implements Listener {
 		Bukkit.getPluginCommand("bowsplusreload").setExecutor(new CmdReload(this));
 		Bukkit.getPluginCommand("bowsplus").setExecutor(new CmdSet(this));
 		
-		Utils.init(this);
-	}
-	
-	@Override
-	public void onDisable() {
+		saveDefaultConfig();
 		
+		Utils.init(this);
 	}
 	
 	@EventHandler
@@ -41,15 +38,14 @@ public class BowsPlus extends JavaPlugin implements Listener {
 				return;
 			}
 
-			EntityType e = null;
-			Material m = null;
+			EntityType eType = null;
+			Material material = null;
 			
 			String[] type = null;
 			
 			for (MetadataValue value : player.getMetadata("bowplustype")) {
 				if (value.getOwningPlugin().getDescription().getName().equals(this.getDescription().getName())) {
 					type = (String[]) value.value();
-					System.out.print("value found for " + player.getName() + ": "+type);
 				}
 			}
 			
@@ -58,25 +54,25 @@ public class BowsPlus extends JavaPlugin implements Listener {
 			}
 			
 			try {
-				e = EntityType.valueOf(type[0]);
+				eType = EntityType.valueOf(type[0]);
 			} catch (IllegalArgumentException iax) {
-				m = Material.matchMaterial(type[0]);
+				material = Material.matchMaterial(type[0]);
 			} 
 			
-			if (player.isOp() || Utils.hasPerms(player, e, m)) {
-				if (e == null && m == null) {
+			if (player.isOp() || Utils.hasPerms(player, eType, material)) {
+				if (eType == null && material == null) {
 					return;
 				}
 				
-				final Vector v = event.getEntity().getVelocity();
-				Location l = event.getEntity().getLocation();
+				final Vector velocity = event.getEntity().getVelocity();
+				Location location = event.getEntity().getLocation();
 				
 				event.getEntity().remove();
 				
-				if (e == null) {
-					final Item flyingItem = l.getWorld().dropItem(l, new ItemStack(Material.ARROW));
+				if (eType == null) {
+					final Item flyingItem = location.getWorld().dropItem(location, new ItemStack(Material.ARROW));
 					
-					final Material flyingMat = m;
+					final Material flyingMat = material;
 					final String[] flyingArgs = type;
 					
 					class RunLater implements Runnable {
@@ -85,20 +81,20 @@ public class BowsPlus extends JavaPlugin implements Listener {
 
 							Utils.parseSubValues(flyingItem, flyingArgs);
 							
-							flyingItem.setVelocity(v);
+							flyingItem.setVelocity(velocity);
 						}
 					}
 					Bukkit.getScheduler().runTaskLater(this, new RunLater(), 1L);
 				} else {
 					
-					final Entity flyingEntity = l.getWorld().spawn(l, e.getEntityClass());
+					final Entity flyingEntity = location.getWorld().spawn(location, eType.getEntityClass());
 					final String[] flyingArgs = type;
 					
 					class RunLater implements Runnable {
 						public void run() {
-							Utils.parseSubValues(flyingEntity, flyingArgs);
+							Utils.parseSubValues(flyingEntity, Utils.lowerCase(flyingArgs));
 							
-							flyingEntity.setVelocity(v);
+							flyingEntity.setVelocity(velocity);
 						}
 					}
 					Bukkit.getScheduler().runTaskLater(this, new RunLater(), 1L);

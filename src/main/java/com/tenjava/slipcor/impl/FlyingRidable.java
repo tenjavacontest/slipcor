@@ -4,7 +4,6 @@ import org.bukkit.entity.Ageable;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 
-import com.tenjava.slipcor.api.IFlyingRidable;
 import com.tenjava.slipcor.impl.ridable.FlyingRidableCreeper;
 import com.tenjava.slipcor.impl.ridable.FlyingRidableHorse;
 import com.tenjava.slipcor.impl.ridable.FlyingRidableMagmaCube;
@@ -14,14 +13,14 @@ import com.tenjava.slipcor.impl.ridable.FlyingRidableSkeleton;
 import com.tenjava.slipcor.impl.ridable.FlyingRidableSlime;
 import com.tenjava.slipcor.impl.ridable.FlyingRidableVillager;
 
-public class FlyingRidable implements IFlyingRidable {
+public class FlyingRidable  {
 	protected final Entity entity;
 	
 	public FlyingRidable(Entity flyingEntity) {
 		entity = flyingEntity;
 	}
 
-	public static IFlyingRidable parseToFlyingRidable(Entity flyingEntity) {
+	public static FlyingRidable parseToFlyingRidable(Entity flyingEntity) {
 		
 		switch (flyingEntity.getType()) {
 			// standard
@@ -46,21 +45,21 @@ public class FlyingRidable implements IFlyingRidable {
 				return new FlyingRidable(flyingEntity);
 		
 			// special case
-			case CREEPER: // powered?
+			case CREEPER:
 				return new FlyingRidableCreeper(flyingEntity);
-			case SKELETON: // wither?
+			case SKELETON:
 				return new FlyingRidableSkeleton(flyingEntity);
-			case SLIME: // size?
+			case SLIME:
 				return new FlyingRidableSlime(flyingEntity);
-			case MAGMA_CUBE: // size?
+			case MAGMA_CUBE:
 				return new FlyingRidableMagmaCube(flyingEntity);
-			case SHEEP: // colors
+			case SHEEP:
 				return new FlyingRidableSheep(flyingEntity);
-			case OCELOT: // colors?
+			case OCELOT:
 				return new FlyingRidableOcelot(flyingEntity);
-			case HORSE: // fur ?
+			case HORSE:
 				return new FlyingRidableHorse(flyingEntity);
-			case VILLAGER: // thingie?
+			case VILLAGER:
 				return new FlyingRidableVillager(flyingEntity);
 		}
 		return null;
@@ -85,7 +84,7 @@ public class FlyingRidable implements IFlyingRidable {
 					
 					entity.setPassenger(passenger);
 				} catch (Exception e) {
-					e.printStackTrace(); //TODO 
+					
 				}
 			}
 		}

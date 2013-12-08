@@ -1,13 +1,7 @@
 package com.tenjava.slipcor.impl.ridable;
 
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.Horse;
-import org.bukkit.entity.Horse.Style;
-import org.bukkit.entity.Horse.Variant;
 import org.bukkit.entity.Ocelot;
-import org.bukkit.entity.Ocelot.Type;
-
-import com.tenjava.slipcor.api.IFlyingRidable;
 import com.tenjava.slipcor.impl.FlyingRidable;
 
 public class FlyingRidableOcelot extends FlyingRidable {

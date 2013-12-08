@@ -1,11 +1,9 @@
 package com.tenjava.slipcor.impl.ridable;
 
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.Ocelot;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.Villager.Profession;
 
-import com.tenjava.slipcor.api.IFlyingRidable;
 import com.tenjava.slipcor.impl.FlyingRidable;
 
 public class FlyingRidableVillager extends FlyingRidable {

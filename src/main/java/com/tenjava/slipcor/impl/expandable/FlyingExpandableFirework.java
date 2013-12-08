@@ -18,7 +18,7 @@ public class FlyingExpandableFirework extends FlyingExpandable {
 	public void parseArguments(String[] flyingArgs) {
 		super.parseArguments(flyingArgs);
 		
-		//TODO check if it actually does anything... first set a default thing
+		//TODO add more varieties. A LOT of work :P
 		
 		Firework fw = (Firework) entity;
 		
