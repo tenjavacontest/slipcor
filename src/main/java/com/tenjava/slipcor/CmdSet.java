@@ -29,7 +29,7 @@ public class CmdSet implements CommandExecutor {
 			
 			Player player = (Player) sender;
 			
-			String type = args[0];
+			String type = args[0].toUpperCase();
 			
 			/*
 			 * 
