@@ -1,6 +1,7 @@
 package com.tenjava.slipcor;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -17,6 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
 public class BowsPlus extends JavaPlugin implements Listener {
+	public String prefix = "["+ChatColor.AQUA+"Bows"+ChatColor.YELLOW+"+"+ChatColor.RESET+"] ";
 	
 	@Override
 	public void onEnable() {
@@ -108,7 +110,7 @@ public class BowsPlus extends JavaPlugin implements Listener {
 					player.getInventory().addItem(new ItemStack(Material.ARROW, 1));
 				}
 			} else {
-				player.sendMessage("You don't have the permission to spawn this!");
+				player.sendMessage(prefix + ChatColor.RED + "You don't have the permission to spawn this!");
 			}
 		}
 	}

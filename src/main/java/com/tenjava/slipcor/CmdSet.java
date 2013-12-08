@@ -1,5 +1,6 @@
 package com.tenjava.slipcor;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -22,7 +23,7 @@ public class CmdSet implements CommandExecutor {
 		if (sender instanceof Player) {
 			
 			if (args.length < 1) {
-				sender.sendMessage("Not enough arguments!");
+				sender.sendMessage(plugin.prefix + ChatColor.RED + "Not enough arguments!");
 				return false;
 			}
 			
@@ -50,7 +51,7 @@ public class CmdSet implements CommandExecutor {
 			if (player.isOp() || Utils.hasPerms(player, e, m)) {
 
 				if (e == null && m == null) {
-					sender.sendMessage("Unknown item or entity: "+type+"!");
+					sender.sendMessage(plugin.prefix + ChatColor.RED + "Unknown item or entity: "+type+"!");
 					return true;
 				} else if (e == null) {
 					args[0] = m.name();
@@ -59,13 +60,13 @@ public class CmdSet implements CommandExecutor {
 				}
 				player.setMetadata("bowplustype", new FixedMetadataValue(plugin, args));
 				System.out.print("saving " + args[0] + " to " +player.getName());
-				player.sendMessage("Your bows now fire: " + args[0]);
+				player.sendMessage(plugin.prefix + ChatColor.DARK_GRAY + "Your bows now fire: " + ChatColor.WHITE + args[0]);
 			} else {
-				sender.sendMessage("You don't have the permission to spawn this!");
+				sender.sendMessage(plugin.prefix + ChatColor.RED + "You don't have the permission to spawn this!");
 			}
 			
 		} else {
-			sender.sendMessage("You don't have a bow in your hand. Wait.. you don't even have hands. What the?");
+			sender.sendMessage("Wait.. you don't even have hands. How would you shoot an arrow?");
 			
 		}
 

@@ -5,3 +5,11 @@
 
 Good luck to the coders!
 Have fun, spectators!
+
+Note the plugin defaults! There is a default whitelist on GRAVEL. Server admins NEED to adjust the settings before doing anything!
+
+Permissions will be documented in the according plugin page, in the form of:
+
+* bowsplus.material
+* bowsplus.entitytype
+
