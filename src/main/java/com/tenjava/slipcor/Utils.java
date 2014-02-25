@@ -10,6 +10,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.material.SpawnEgg;
 
 import com.tenjava.slipcor.impl.FlyingExpandable;
 import com.tenjava.slipcor.impl.FlyingRidable;
@@ -24,8 +25,9 @@ public final class Utils {
 	private Utils() {
 	}
 
-	public static boolean hasMats(final Player player, final Material material, final String[] flyingArgs) {
-		if (!plugin.getConfig().getBoolean("uses.cost") || player.getGameMode() == GameMode.CREATIVE) {
+	public static boolean hasMats(final Player player, final Material material, final String[] flyingArgs, EntityType eType) {
+		if (!plugin.getConfig().getBoolean("uses.cost") || player.getGameMode() == GameMode.CREATIVE
+				|| material == null) {
 			return true;
 		}
 		
@@ -44,8 +46,27 @@ public final class Utils {
 			}
 		}
 		
-		if (player.getInventory().containsAtLeast(removal, 1)) {
-			player.getInventory().remove(removal);
+		if (material == Material.MONSTER_EGG && eType != null) {
+			
+			for (ItemStack item : player.getInventory()) {
+				if (item != null && item.getType() == material && item.getData().getData() == eType.getTypeId()) {
+					if (item.getAmount() < removal.getAmount()) {
+						return false;
+					}
+					if (item.getAmount() > removal.getAmount()) {
+						item.setAmount(item.getAmount() - removal.getAmount());
+					} else {
+						player.getInventory().remove(item);
+					}
+					
+					player.updateInventory();
+					return true;
+				}
+			}
+		}
+		
+		if (player.getInventory().containsAtLeast(removal, removal.getAmount())) {
+			player.getInventory().removeItem(removal);
 			player.updateInventory();
 			return true;
 		}

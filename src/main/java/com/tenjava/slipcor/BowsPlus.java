@@ -1,5 +1,8 @@
 package com.tenjava.slipcor;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -13,12 +16,19 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.material.SpawnEgg;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
 public class BowsPlus extends JavaPlugin implements Listener {
 	public String prefix = "["+ChatColor.AQUA+"Bows"+ChatColor.YELLOW+"+"+ChatColor.RESET+"] ";
+	private List<String> spawnables = Arrays.asList(new String[]{
+			"CREEPER", "SKELETON", "SPIDER", "GIANT", "ZOMBIE", "SLIME", "GHAST", "PIG_ZOMBIE", 
+			"ENDERMAN", "CAVE_SPIDER", "SILVERFISH", "BLAZE", "MAGMA_CUBE", "ENDER_DRAGON",
+			"WITHER", "BAT", "WITCH", "PIG", "SHEEP", "COW", "CHICKEN", "SQUID", "WOLF", "MUSHROOM_COW",
+			"OCELOT", "HORSE", "VILLAGER"
+	});
 	
 	@Override
 	public void onEnable() {
@@ -67,7 +77,23 @@ public class BowsPlus extends JavaPlugin implements Listener {
 					return;
 				}
 				
-				if (!Utils.hasMats(player, material, type)) {
+				
+				// 
+				// 
+				// 
+				
+				try {
+					SpawnEgg egg = new SpawnEgg();
+					egg.setSpawnedType(eType);
+					
+					if (spawnables.contains(eType.name())) {
+						material = Material.MONSTER_EGG;
+					}
+				} catch (Exception e) {
+					
+				}
+				
+				if (!Utils.hasMats(player, material, type, eType)) {
 					player.sendMessage(prefix + ChatColor.RED + "You don't have enough " + material.name());
 					return;
 				}
@@ -107,8 +133,10 @@ public class BowsPlus extends JavaPlugin implements Listener {
 					}
 					Bukkit.getScheduler().runTaskLater(this, new RunLater(), 1L);
 				}
-				if (player.getGameMode() != GameMode.CREATIVE && !getConfig().getBoolean("uses.arrows")) {
-					player.getInventory().addItem(new ItemStack(Material.ARROW, 1));
+				if (player.getGameMode() != GameMode.CREATIVE) {
+					if (!getConfig().getBoolean("uses.arrows")) {
+						player.getInventory().addItem(new ItemStack(Material.ARROW, 1));
+					}
 				}
 			} else {
 				player.sendMessage(prefix + ChatColor.RED + "You don't have the permission to spawn this!");
