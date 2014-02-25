@@ -2,7 +2,7 @@ main: com.tenjava.slipcor.BowsPlus
 name: BowsPlus
 description: BowsPlus
 author: slipcor
-version: 0.0.2
+version: 0.0.5.1
 commands:
   bowsplus:
     aliases: ['bp']
