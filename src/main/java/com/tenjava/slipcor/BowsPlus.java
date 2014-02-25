@@ -29,6 +29,7 @@ public class BowsPlus extends JavaPlugin implements Listener {
 			"WITHER", "BAT", "WITCH", "PIG", "SHEEP", "COW", "CHICKEN", "SQUID", "WOLF", "MUSHROOM_COW",
 			"OCELOT", "HORSE", "VILLAGER"
 	});
+	private Tracker tracker;
 	
 	@Override
 	public void onEnable() {
@@ -38,6 +39,9 @@ public class BowsPlus extends JavaPlugin implements Listener {
 		Bukkit.getPluginCommand("bowsplus").setExecutor(new CmdSet(this));
 		
 		saveDefaultConfig();
+		
+		tracker = new Tracker(this);
+		tracker.start();
 		
 		Utils.init(this);
 	}
