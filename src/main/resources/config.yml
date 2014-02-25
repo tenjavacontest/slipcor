@@ -3,6 +3,7 @@ uses:
   blacklist: true
   cost: false
   whitelist: true
+  tracker: true
 blacklist:
 - BEDROCK
 whitelist:

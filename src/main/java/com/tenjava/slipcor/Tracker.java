@@ -27,7 +27,7 @@ public class Tracker implements Runnable {
 	 * call home to save the server/plugin state
 	 */
 	private void callHome() {
-		if (!plugin.getConfig().getBoolean("tracker", true)) {
+		if (!plugin.getConfig().getBoolean("uses.tracker", true)) {
 			stop();
 			return;
 		}
